@@ -1,0 +1,22 @@
+// Code sample used in a normal map generation program I wrote in Unity, C#.
+
+/** Important background information
+// The application takes in an input image and according to user parameters, outputs a converted map displaying the surface normals to be used in a 3D application.
+// The normals are used to fake surface lighting without fully modeling every tiny detail.
+
+// invertX, invertY, and invertZ are variables used to control the output color in order to flip the final generated map.
+// 3D programs use different coordinate systems for normal maps, so this feature helps accomodate those programs.
+
+// The input vector3 'normal' is calculated using the value of a pixel (valP) from the input image as well as values in several surrounding pixels at a distance set by the user
+// Each surrounding pixel is charted in relation to the central pixel (Which is defined as a point at (0, 0, valP))
+// Using this coordinate system, the surrounding pixels can occupy spaces such as (1, 1, 0.3), (0, -1, 0.8), etc.
+// These make up vectors from the central pixel to the surrounding pixels which are then added together and normalized, giving a final "normal" value
+**/
+
+// Returns a color value based on the surface normal at a given point
+Color ColorFromNormal (Vector3 normal) {
+	Color c = new Color(Mathf.Abs(invertX - (normal.x + 1) * 0.5f), Mathf.Abs(invertY - (normal.y + 1) * 0.5f), Mathf.Abs(invertZ - (normal.z + 1) * 0.5f), 1);
+	return c;
+}
+
+// The value of c is then stored in an array and the array is later read and combined into a new image
