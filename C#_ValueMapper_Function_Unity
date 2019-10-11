@@ -1,0 +1,6 @@
+// Function that takes an input value (x) and an input range (a to b) and remaps the value into the range (c to d)
+// Very useful function for color scaling, conversions between common standards of measurement, etc.
+
+public static float MapValue(float x, float a, float b, float c, float d) {
+  return ((x - a) * (d - c) / (b - a) + c);
+}
