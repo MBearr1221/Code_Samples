@@ -1,0 +1,14 @@
+// Function that converts a square 2D array into a 1D array
+
+int[] TwoToOneD(int[,] twoDArray) {
+	int[] oneDArray = new int[(int)Mathf.Pow(twoDArray.GetLength(0), 2)];
+
+  // Step through rows then columns of array and copy values into the 1D array in order
+	for (int y = 0; y < twoDArray.GetLength(1); y++) {
+		for (int x = 0; x < twoDArray.GetLength(0); x++) {
+			oneDArray[y * twoDArray.GetLength(0) + x] = twoDArray[x,y];
+		}
+	}
+
+	return oneDArray;
+}
